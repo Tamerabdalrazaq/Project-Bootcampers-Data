@@ -8,22 +8,23 @@ let searchedType = 'lastName'
 start()
 
 async function start(){
-    await fetchData();
-    await completeData();
+    if(localStorage.getItem('bootcampers'))
+        bootcampers = JSON.parse(localStorage.getItem('bootcampers'));
+    else
+        await fetchData();
+    bootcampers.forEach(camper => createHTMLRow(camper));
+    console.log(bootcampers);
     stopLoading()
 }
 
 async function fetchData(){
     bootcampers = await (await fetch('https://apple-seeds.herokuapp.com/api/users/')).json();
-}
-
-async function completeData(){
     for(let x = 0; x<bootcampers.length; x++){
         let data = (await (await fetch(`https://apple-seeds.herokuapp.com/api/users/${bootcampers[x].id}`)).json());
         bootcampers[x] = {...bootcampers[x], ...data};
-        createHTMLRow(bootcampers[x]);
     }
 }
+
 
 function createHTMLRow(camper){
     let row = document.createElement('tr');
@@ -132,4 +133,8 @@ searchInput.oninput =  () => {
 
 function radioChange(e){
     searchedType = e.value;
+}
+
+function updateStorage(clear){
+    return clear ? localStorage.setItem('bootcampers', JSON.stringify(bootcampers)) : localStorage.removeItem('bootcampers')
 }

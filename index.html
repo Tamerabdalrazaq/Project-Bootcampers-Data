@@ -13,6 +13,7 @@
         <div class="crc jc1"></div>
         <div class="crc jc2"></div>
         <div class="crc jc3"></div>
+        <br>
     </div>
     <main>
         <div class="toolbar" >
@@ -21,11 +22,11 @@
                 <label for="male">First Name</label><br>
                 <input type="radio" id="female" name="gender" value="lastName" onclick="radioChange(this)">
                 <label for="female">Last Name</label><br>
-                <input type="radio" id="other" name="gender" value="id" onclick="radioChange(this)">
+                <input type="radio" id="id" name="gender" value="id" onclick="radioChange(this)">
                 <label for="other">ID</label>
-                <input type="radio" id="other" name="gender" value="capsule" onclick="radioChange(this)">
+                <input type="radio" id="capsule" name="gender" value="capsule" onclick="radioChange(this)">
                 <label for="other">Capsule</label>
-                <input type="radio" id="other" name="gender" value="city" onclick="radioChange(this)">
+                <input type="radio" id="city" name="gender" value="city" onclick="radioChange(this)">
                 <label for="other">City</label>
             </div>
             <input type="text" id="inputSearch" class="inputSearch">
@@ -33,6 +34,10 @@
                 <button class="editItems" id="addItems" onclick="showAddPanel()"><i class="fas fa-plus"></i></button>
                 <button class="editItems" id="sortItemsId" onclick="sortItemsByType('id')"><i class="fas fa-list-ol"></i></button>
                 <button class="editItems" id="sortItemsAge" onclick="sortItemsByType('age')"><i class="fas fa-sort"></i></button>
+            </div>
+            <div>
+                <button class="editItems" id="setStorage" onclick="updateStorage(true)"><i class="fas fa-archive"></i></button>
+                <button class="editItems" id="sortItemsId" onclick="updateStorage(false)"><i class="fas fa-box-open"></i></button>
             </div>
         </div>
         <table id="table">
